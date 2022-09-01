@@ -1,0 +1,31 @@
+# IAM policy attach to your new IAM role for VPC flowLog
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogGroups",
+        "logs:DescribeLogStreams"
+      ],
+      "Resource": "*"
+    }
+  ]
+}  
+
+# Edit Trust Relationship of the IAM Role to assume role
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "vpc-flow-logs.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole"
+      }
+    ]
+  } 
